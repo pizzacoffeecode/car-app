@@ -1,7 +1,7 @@
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { StatusBar } from 'expo-status-bar';
 import { Text, View } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { SafeAreaView } from '@react-navigation/native';
+
 import { useState } from 'react';
 
 //?Expo
@@ -10,23 +10,27 @@ import { useFonts } from 'expo-font';
 
 
 //? Navigation
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+
 import { NavigationContainer } from '@react-navigation/native';
 
 //?Hooks
-
 
 //? Redux
 import { Provider } from 'react-redux';
 import { store } from './app/store';
 
 //? Screens
-import Intro from './screens/Intro';
-
+import { Intro, AddCar } from './screens/index';
 
 //? Components
 
-const Stack = createNativeStackNavigator();
+//? Tailwind
+import tw from 'twrnc';
+import { theme } from './tailwind-config';
 
+const Stack = createNativeStackNavigator();
 
 export default function App() {
   const [ loadedFonts ] = useFonts({
@@ -42,31 +46,26 @@ export default function App() {
   }
 
   return (
-
-
-
-    <SafeAreaView>
-
-      <Intro />
-
-    </SafeAreaView>
-    // <NavigationContainer>
-    //   <SafeAreaView>
-    //     <Stack.Navigator>
-    //       <Stack.Screen
-    //         name="Intro"
-    //         component={ Intro }
-    //       // options={ {
-    //       //   headerShown: false,
-    //       // } }
-    //       />
-
-
-    //     </Stack.Navigator>
-    //   </SafeAreaView>
-    // </NavigationContainer>
-
-
+    <NavigationContainer>
+      <SafeAreaProvider style={ tw`bg-[${ theme.colors[ 'bg-white' ] }]` }>
+        <Stack.Navigator>
+          <Stack.Screen
+            name="Intro"
+            component={ Intro }
+            options={ {
+              headerShown: false,
+            } }
+          />
+          <Stack.Screen
+            name="AddCar"
+            component={ AddCar }
+            options={ {
+              headerShown: false,
+            } }
+          />
+        </Stack.Navigator>
+      </SafeAreaProvider>
+    </NavigationContainer>
   );
 }
 

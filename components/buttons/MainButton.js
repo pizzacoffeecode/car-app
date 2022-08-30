@@ -1,18 +1,21 @@
 import { View, Text, TouchableOpacity, Pressable } from 'react-native';
-import { StyleSheet } from 'react-native';
-import React from 'react';
-import tw from 'twrnc';
 
+
+import React from 'react';
+
+//? Styles
+import { StyleSheet } from 'react-native';
+import tw from 'twrnc';
 import { theme } from '../../tailwind-config';
 export default function MainButton(props) {
-
-    const { text } = props;
-
+    const { title, handlePress } = props;
     return (
         <View style={ tw`w-full px-5` }>
-            <Pressable style={ tw`bg-[${ theme.colors[ 'dark-blue' ] }] rounded-full justify-center items-center h-48px` }>
+            <Pressable
+                style={ tw`bg-[${ theme.colors[ 'dark-blue' ] }] rounded-full justify-center items-center h-48px` }
+                onPress={ handlePress }>
                 <Text style={ styles.button }>
-                    { text }
+                    { title }
                 </Text>
             </Pressable>
         </View >
@@ -28,9 +31,3 @@ const styles = StyleSheet.create({
         textAlign: 'justify',
     }
 });
-
-
-// onLongPress={ () => { } }
-// class="text-white font-bold py-2 flex-1 rounded-full"
-// title={ text }
-// color='red-500'
