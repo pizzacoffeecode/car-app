@@ -22,7 +22,7 @@ import { Provider } from 'react-redux';
 import { store } from './app/store';
 
 //? Screens
-import { Intro, AddCar } from './screens/index';
+import { Intro, AddCar, AddLocation } from './screens/index';
 
 //? Components
 
@@ -59,6 +59,13 @@ export default function App() {
           <Stack.Screen
             name="AddCar"
             component={ AddCar }
+            options={ {
+              headerShown: false,
+            } }
+          />
+          <Stack.Screen
+            name="AddLocation"
+            component={ AddLocation }
             options={ {
               headerShown: false,
             } }

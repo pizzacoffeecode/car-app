@@ -7,13 +7,13 @@ import React from 'react';
 import { StyleSheet } from 'react-native';
 import tw from 'twrnc';
 import { theme } from '../../tailwind-config';
-export default function MainButton(props) {
-    const { title, handlePress } = props;
+export default function MainButton({ title, handlePress, disabled }) {
     return (
         <View style={ tw`w-full px-5` }>
             <Pressable
-                style={ tw`bg-[${ theme.colors[ 'dark-blue' ] }] rounded-full justify-center items-center h-48px` }
-                onPress={ handlePress }>
+                style={ tw`${ !disabled ? `bg-[${ theme.colors[ 'dark-blue' ] }]` : `bg-gray-500` } rounded-full justify-center items-center h-48px` }
+
+                onPress={ disabled ? null : handlePress }>
                 <Text style={ styles.button }>
                     { title }
                 </Text>
@@ -30,4 +30,4 @@ const styles = StyleSheet.create({
         fontSize: 16,
         textAlign: 'justify',
     }
-});
+});;

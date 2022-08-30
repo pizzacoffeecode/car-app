@@ -15,10 +15,10 @@ import MainButton from '../components/buttons/MainButton';
 import tw from 'twrnc';
 import { theme } from '../tailwind-config';
 import { MaterialIcons } from '@expo/vector-icons';
-import car from '../assets/images/car.png';
+import map from '../assets/images/map.png';
 
 
-export default function Intro() {
+export default function AddLocation() {
     const navigation = useNavigation();
 
     useEffect(() => {
@@ -35,17 +35,17 @@ export default function Intro() {
                 </TouchableOpacity>
                 <View style={ tw`flex pt-5` }>
                     <TitleText>
-                        List your <TextBlue>parking space!</TextBlue>
+                        Add the <TextBlue>location</TextBlue> of your parking <TextBlue>spot.</TextBlue>
                     </TitleText>
                 </View>
                 <View style={ tw` flex-4` }>
                     <MainText>
-                        "We started a pilot program in NYC. On average, host makes <TextBold>$928 a month.</TextBold> If you live in NYC, become a host and help others find parking easily!"
+                        Add the location of the parking spot that you want to list!
                     </MainText>
                 </View>
 
                 <View style={ tw`items-center justify-center pt-2bg-gray-300 flex-12` }>
-                    <Image source={ car } style={ tw`w-full h-full` } resizeMode="contain" />
+                    <Image source={ map } style={ tw`w-full h-full` } resizeMode="contain" />
                 </View>
                 <View style={ tw`items-center justify-center w-full h-150px` }>
                     <MainButton title={ "List your space!" } handlePress={ () => navigation.navigate("AddCar") } />

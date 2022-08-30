@@ -1,9 +1,12 @@
 import { View, Image, Pressable, TouchableOpacity } from 'react-native';
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 //? Navigation
 import { useNavigation } from '@react-navigation/native';
+
+//? UI Library
+import DropDownPicker from 'react-native-dropdown-picker';
 
 //? Components
 import { TextBlue, TextBold } from '../components/Text/textStyles/TextStyles';
@@ -16,10 +19,20 @@ import tw from 'twrnc';
 import { theme } from '../tailwind-config';
 import { MaterialIcons } from '@expo/vector-icons';
 import city from '../assets/images/city-driver.png';
+import carIcon from '../assets/images/icons/car.png';
+import { StyleSheet } from 'react-native';
 
 
 export default function AddCar() {
     const navigation = useNavigation();
+
+    const [ open, setOpen ] = useState(false);
+    const [ value, setValue ] = useState(null);
+    const [ items, setItems ] = useState([
+        { label: 'Mazda', value: 'Mazda, CX-9, 2020, Red', icon: () => <Image source={ carIcon } style={ tw`w-28px` } resizeMode="contain" /> },
+        { label: 'Toyota', value: 'Toyota, Corlla, 2019, Silver', icon: () => <Image source={ carIcon } style={ tw`w-28px` } resizeMode="contain" /> },
+        { label: 'Add', value: 'Add a new vehicle', icon: () => <Image source={ carIcon } style={ tw`w-28px` } resizeMode="contain" /> },
+    ]);
 
     useEffect(() => {
         navigation.setOptions({
@@ -30,7 +43,7 @@ export default function AddCar() {
     return (
         <SafeAreaView>
             <View style={ tw`w-full h-full bg-[${ theme.colors[ 'bg-white' ] }]` }>
-                <TouchableOpacity style={ tw`flex items-end` } onPress={ () => navigation.navigate("AddCar") }>
+                <TouchableOpacity style={ tw`flex items-end` } onPress={ () => navigation.navigate("Intro") }>
                     <View style={ tw`px-8 py-2` }><MaterialIcons style={ tw`opacity-50 w-24px h-24px` } name="close" size={ 24 } color="black" /></View>
                 </TouchableOpacity>
                 <View style={ tw`flex pt-5` }>
@@ -44,11 +57,24 @@ export default function AddCar() {
                     </MainText>
                 </View>
 
+                <View style={ tw`w-full px-12` }>
+                    <DropDownPicker
+                        placeholder='Select your car'
+                        showTickIcon={ true }
+                        open={ open }
+                        value={ value }
+                        items={ items }
+                        setOpen={ setOpen }
+                        setValue={ setValue }
+                        setItems={ setItems }
+                    />
+                </View>
+
                 <View style={ tw`items-center justify-center mx-10 pt-2bg-gray-300 flex-12` }>
                     <Image source={ city } style={ tw`w-full h-full` } resizeMode="contain" />
                 </View>
                 <View style={ tw`items-center justify-center w-full h-150px` }>
-                    <MainButton title={ "List your space!" } handlePress={ () => navigation.navigate("AddCar") } />
+                    <MainButton title={ "List your space!" } disabled={ !value } handlePress={ () => navigation.navigate("AddLocation") } />
                 </View>
             </View >
         </SafeAreaView >
