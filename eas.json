@@ -3,7 +3,6 @@
       "preview": {
         "android": {
             "env": {
-                "API_URL": "https://api.production.com"
               },
           "buildType": "apk"
         }
