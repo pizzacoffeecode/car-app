@@ -34,8 +34,8 @@ export default function Duration() {
     };
 
     return (
-        <View style={ tw`w-full h-full` }>
-            <View style={ tw`absolute z-10 w-full pt-60` }>
+        <View style={ tw`w-full h-full bg-white` }>
+            <View style={ tw`absolute z-10 w-full pt-60 bg-white` }>
                 <ActivityIndicator size={ 100 } color={ `${ theme.colors[ 'dark-blue' ] }` } />
             </View>
             <View style={ tw`bg-[${ [ theme.colors.white ] }] w-10 h-10 ml-8 absolute mt-15 items-center justify-center z-10 rounded-lg` }>

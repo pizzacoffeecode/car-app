@@ -4,7 +4,6 @@ import { useFonts } from 'expo-font';
 
 //? Navigation
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { NavigationContainer } from '@react-navigation/native';
 
 //? Redux
@@ -32,7 +31,6 @@ export default function App() {
   return (
     <Provider store={ store }>
       <NavigationContainer>
-        {/* <SafeAreaProvider style={ tw`bg-[${ theme.colors[ 'bg-white' ] }]` }> */ }
         <Stack.Navigator>
           <Stack.Screen
             name="Intro"
@@ -84,7 +82,6 @@ export default function App() {
             } }
           />
         </Stack.Navigator>
-        {/* </SafeAreaProvider> */ }
       </NavigationContainer>
     </Provider >
   );

@@ -4,6 +4,9 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 //? Navigation
 import { useNavigation } from '@react-navigation/native';
 
+//? React
+import { useSelector } from 'react-redux';
+
 //? Components
 import { TitleText, MainText, MainButton } from '../components/index';
 
@@ -13,9 +16,13 @@ import { theme } from '../../tailwind-config';
 import { Feather } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
+import { selectCar, selectLocation, selectPrice } from '../app/navSlice';
 
 export default function Confirm() {
     const navigation = useNavigation();
+    const getPrice = useSelector(selectPrice);
+    const getLocation = useSelector(selectLocation);
+    const getCar = useSelector(selectCar);
 
     return (
         <SafeAreaView style={ tw`bg-white` }>
@@ -38,7 +45,7 @@ export default function Confirm() {
                         <Text style={ { fontSize: 12, fontFamily: 'gilroy' } }>Your Car</Text>
                         <View style={ tw`pl-6 flex-row items-center justify-center rounded-md my-2 border border-[${ theme.colors[ 'border-gray' ] }]` }>
                             <Ionicons style={ tw`opacity-50` } name="ios-car" size={ 24 } color="black" />
-                            <TextInput style={ tw`w-80% py-2` } />
+                            <TextInput style={ tw`w-80% py-2 px-2` } defaultValue={ getCar } />
                             <MaterialIcons style={ tw`pr-10 opacity-50` } name="arrow-drop-down" size={ 24 } color="black" />
                         </View>
                     </View>
@@ -46,19 +53,19 @@ export default function Confirm() {
                         <Text style={ { fontSize: 12, fontFamily: 'gilroy' } }>Location</Text>
                         <View style={ tw`pl-6 flex-row items-center justify-center rounded-md my-2 border border-[${ theme.colors[ 'border-gray' ] }]` }>
                             <Feather style={ tw`opacity-50` } name="map" size={ 24 } color="black" />
-                            <TextInput style={ tw`w-full px-2 py-2` } />
+                            <TextInput style={ tw`w-full px-2 py-2` } defaultValue={ getLocation.description } />
                         </View>
                     </View>
                     <View style={ tw`pb-4` }>
                         <Text style={ { fontSize: 12, fontFamily: 'gilroy' } }>Price</Text>
                         <View style={ tw`pl-6 flex-row items-center justify-center rounded-md my-2 border border-[${ theme.colors[ 'border-gray' ] }]` }>
-                            <Feather style={ tw`opacity-50` } name="dollar-sign" size={ 24 } color="black" />
-                            <TextInput style={ tw`w-full px-2 py-2` } />
+                            <Feather style={ tw`opacity-50` } name="dollar-sign" size={ 23 } color="black" />
+                            <TextInput style={ tw`w-full px-2 py-2` } defaultValue={ getPrice } />
                         </View>
                     </View>
                 </View>
                 <View style={ tw`absolute bottom-0 z-10 self-center w-full pb-10` }>
-                    <MainButton title={ "Confirm" } disabled={ buttonActive } handlePress={ () => navigation.navigate("Pending") } />
+                    <MainButton title={ "Confirm" } disabled={ false } handlePress={ () => navigation.navigate("Pending") } />
                 </View>
             </View >
         </SafeAreaView >

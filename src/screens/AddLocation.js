@@ -1,5 +1,4 @@
 import { View, Image, Text, TouchableOpacity } from 'react-native';
-import { useEffect } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 //? Navigation
@@ -22,7 +21,7 @@ export default function AddLocation() {
     return (
 
         <SafeAreaView style={ tw`bg-white` }>
-            <View style={ tw`w-full px-8 h-full bg-[${ theme.colors[ 'bg-white' ] }]` }>
+            <View style={ tw`w-full px-8 h-full bg-white` }>
                 <TouchableOpacity style={ tw`flex items-start` } onPress={ () => navigation.navigate("AddCar") }>
                     <View style={ tw`py-2` }><Feather name="arrow-left" style={ tw`opacity-50 w-24px h-24px` } size={ 24 } color="black" /></View>
                 </TouchableOpacity>
@@ -41,7 +40,6 @@ export default function AddLocation() {
                     <Text style={ { fontSize: 12, fontFamily: 'gilroy' } }>Your Location</Text>
                     <View style={ tw` my-2 z-10 border border-[${ theme.colors[ 'border-gray' ] }]` }>
                         <AutoComplete />
-                        {/* <TextInput style={ tw`w-full px-2 py-1` } placeholder="Enter you location..." /> */ }
                     </View>
                 </View>
                 <KeyboardAwareScrollView>

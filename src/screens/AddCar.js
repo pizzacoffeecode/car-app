@@ -1,34 +1,30 @@
 import { View, Image, TouchableOpacity, Text } from 'react-native';
-import { useState, useEffect } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 //? Navigation
 import { useNavigation } from '@react-navigation/native';
 
-
-
 //? Components
 import { TextBlue, TitleText, MainText, MainButton, Dropdown } from '../components/index';
+
+//? Redux
+import { useSelector } from 'react-redux';
 
 //? Styles
 import tw from 'twrnc';
 import { theme } from '../../tailwind-config';
 import { Feather } from '@expo/vector-icons';
 import city from '../../assets/images/city-driver.png';
+import { selectCar } from '../app/navSlice';
 
 
 export default function AddCar() {
     const navigation = useNavigation();
-
-    // useEffect(() => {
-    //     navigation.setOptions({
-    //         headerShown: false,
-    //     });
-    // }, []);
+    const getCar = useSelector(selectCar);
 
     return (
         <SafeAreaView style={ tw`bg-white` }>
-            <View style={ tw`w-full px-8 h-full bg-[${ theme.colors[ 'bg-white' ] }]` }>
+            <View style={ tw`w-full px-8 h-full bg-white` }>
                 <TouchableOpacity style={ tw`flex items-start` } onPress={ () => navigation.navigate("Intro") }>
                     <View style={ tw`py-2` }><Feather name="arrow-left" style={ tw`opacity-50 w-24px h-24px` } size={ 24 } color="black" /></View>
                 </TouchableOpacity>
@@ -43,12 +39,11 @@ export default function AddCar() {
                     </MainText>
                 </View>
                 <Dropdown />
-
                 <View style={ tw`items-center justify-center pt-2 mx-10 flex-12` }>
                     <Image source={ city } style={ tw`w-full h-full` } resizeMode="contain" />
                 </View>
                 <View style={ tw`items-center justify-center w-full h-150px` }>
-                    <MainButton title={ "Add Car" } disabled={ false } handlePress={ () => navigation.navigate("AddLocation") } />
+                    <MainButton title={ "Add Car" } disabled={ !getCar } handlePress={ () => navigation.navigate("AddLocation") } />
                 </View>
             </View >
         </SafeAreaView >

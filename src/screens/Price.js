@@ -9,7 +9,7 @@ import { useNavigation } from '@react-navigation/native';
 import { useDispatch } from 'react-redux';
 
 //? Components
-import { TextBlue, TextBold, TitleText, MainText, MainButton } from '../components/index';
+import { TextBlue, TitleText, MainText, MainButton } from '../components/index';
 
 //? Styles
 import tw from 'twrnc';
@@ -23,15 +23,18 @@ export default function Price() {
     const navigation = useNavigation();
     const [ priceText, setPriceText ] = useState('');
 
-    function handleChange(prevState) {
+    const dispatch = useDispatch();
 
+    async function handlePress() {
+
+        await dispatch(setPrice(priceText));
+
+        navigation.navigate("Confirm");
     }
-
-    const dispatch = useDispatch(setPrice);
 
     return (
         <SafeAreaView style={ tw`bg-white` }>
-            <View style={ tw`w-full px-8 h-full bg-[${ theme.colors[ 'bg-white' ] }]` }>
+            <View style={ tw`w-full px-8 h-full bg-white` }>
                 <TouchableOpacity style={ tw`flex items-start` } onPress={ () => navigation.navigate("Duration") }>
                     <View style={ tw`py-2` }><Feather name="arrow-left" style={ tw`opacity-50 w-24px h-24px` } size={ 24 } color="black" /></View>
                 </TouchableOpacity>
@@ -48,11 +51,12 @@ export default function Price() {
 
                 <View style={ tw`` }>
                     <Text style={ { fontSize: 12, fontFamily: 'gilroy' } }>Price</Text>
-                    <View style={ tw`rounded-md my-2 border border-[${ theme.colors[ 'border-gray' ] }]` }>
+                    <View style={ tw`pl-6 flex-row items-center justify-center rounded-md my-2 border border-[${ theme.colors[ 'border-gray' ] }]` }>
+                        <Feather style={ tw`opacity-50` } name="dollar-sign" size={ 20 } color="black" />
                         <TextInput style={ tw`w-full py-2 px-2` }
                             placeholder="Parking spot price..."
-                            value={ priceText }
-                            onChange={ (e) => handleChange(e) }
+                            onChangeText={ newText => setPriceText(newText) }
+                            defaultValue={ priceText }
                         />
                     </View>
                 </View>
@@ -61,9 +65,13 @@ export default function Price() {
                 </View>
 
                 <View style={ tw`absolute bottom-0 pb-10 w-full z-10 self-center` }>
-                    <MainButton title={ "Add Car" } disabled={ () => { } } handlePress={ () => navigation.navigate("Confirm") } />
+                    <MainButton
+                        title={ "Add Car" }
+                        disabled={ !priceText }
+                        handlePress={ async () => { handlePress(); } } />
                 </View>
             </View >
         </SafeAreaView >
     );
 };
+

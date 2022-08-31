@@ -19,9 +19,9 @@ export default function Intro() {
 
     return (
         <SafeAreaView style={ tw`bg-white` }>
-            <View style={ tw`w-full h-full bg-[${ theme.colors[ 'bg-white' ] }]` }>
-                <TouchableOpacity style={ tw`flex items-end` } onPress={ () => navigation.navigate("AddCar") }>
-                    <View style={ tw`px-8 py-2` }><MaterialIcons style={ tw`opacity-50 w-24px h-24px` } name="close" size={ 24 } color="black" /></View>
+            <View style={ tw`w-full h-full bg-white` }>
+                <TouchableOpacity style={ tw`flex items-end bg-white` } onPress={ () => navigation.navigate("AddCar") }>
+                    <View style={ tw`px-8 py-2 bg-white` }><MaterialIcons style={ tw`opacity-50 w-24px h-24px` } name="close" size={ 24 } color="black" /></View>
                 </TouchableOpacity>
                 <View style={ tw`flex px-8 pt-5` }>
                     <TitleText>

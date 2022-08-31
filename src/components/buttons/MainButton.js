@@ -3,7 +3,6 @@ import { View, Text, TouchableOpacity } from 'react-native';
 import React from 'react';
 
 //? Styles
-import { StyleSheet } from 'react-native';
 import tw from 'twrnc';
 import { theme } from '../../../tailwind-config';
 export default function MainButton({ title, handlePress, disabled }) {

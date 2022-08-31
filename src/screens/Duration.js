@@ -1,17 +1,15 @@
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Dimensions } from 'react-native';
-import { useEffect, useRef } from 'react';
+import { useRef } from 'react';
 
 //? Navigation
 import { useNavigation } from '@react-navigation/native';
 
 //? Maps
 import MapView from 'react-native-maps';
-import Marker from 'react-native-maps';
 
 //? Redux
 import { useSelector } from 'react-redux';
 import { selectLocation } from '../app/navSlice';
-
 
 //? Components
 import { MainButton } from '../components/index';
@@ -21,7 +19,6 @@ import tw from 'twrnc';
 import { theme } from '../../tailwind-config';
 import { Feather } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
-
 
 
 export default function Duration() {
@@ -39,9 +36,9 @@ export default function Duration() {
     console.log(selectLoc.description);
 
     return (
-        <View style={ tw`w-full h-full` }>
+        <View style={ tw`w-full h-full bg-white` }>
 
-            <View style={ tw`bg-[${ [ theme.colors.white ] }] w-10 h-10 ml-8 absolute mt-15 items-center justify-center z-10 rounded-lg` }>
+            <View style={ tw`bg-white w-10 h-10 ml-8 absolute mt-15 items-center justify-center z-10 rounded-lg` }>
                 <TouchableOpacity style={ tw`flex items-start z-5` } onPress={ () => navigation.navigate("AddLocation") }>
                     <View style={ tw`py-2` }><Feather name="arrow-left" style={ tw`opacity-50 w-24px h-24px` } size={ 24 } color="black" /></View>
                 </TouchableOpacity>
