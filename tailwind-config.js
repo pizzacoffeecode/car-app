@@ -10,8 +10,9 @@ module.exports = {
             'silver': '#ecebff',
             'bubble-gum': '#ff77e9',
             'bermuda': '#78dcca',
-            'dark-blue': '#033AA8',
             'bg-white': '#F5F5F5',
+            'border-gray': '#D6D6D6',
+            'dark-blue': '#033AA8',
         },
     },
 };

@@ -5,7 +5,7 @@ import tw from 'twrnc';
 export default function TitleText({ children }) {
     return (
         <View style={ tw`w-full` }>
-            <View style={ tw`items-center justify-center pt-3 text-center` }>
+            <View style={ tw`items-start justify-center pt-3 text-center` }>
                 <Text style={ styles.mainText }>
                     { children }
                 </Text>

@@ -1,4 +1,4 @@
-import { View, Image, Pressable, TouchableOpacity } from 'react-native';
+import { View, Image, Pressable, TouchableOpacity, Text } from 'react-native';
 import { useState, useEffect } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
@@ -17,7 +17,7 @@ import MainButton from '../components/buttons/MainButton';
 //? Styles
 import tw from 'twrnc';
 import { theme } from '../tailwind-config';
-import { MaterialIcons } from '@expo/vector-icons';
+import { Feather } from '@expo/vector-icons';
 import city from '../assets/images/city-driver.png';
 import carIcon from '../assets/images/icons/car.png';
 import { StyleSheet } from 'react-native';
@@ -42,22 +42,23 @@ export default function AddCar() {
 
     return (
         <SafeAreaView>
-            <View style={ tw`w-full h-full bg-[${ theme.colors[ 'bg-white' ] }]` }>
-                <TouchableOpacity style={ tw`flex items-end` } onPress={ () => navigation.navigate("Intro") }>
-                    <View style={ tw`px-8 py-2` }><MaterialIcons style={ tw`opacity-50 w-24px h-24px` } name="close" size={ 24 } color="black" /></View>
+            <View style={ tw`w-full px-8 h-full bg-[${ theme.colors[ 'bg-white' ] }]` }>
+                <TouchableOpacity style={ tw`flex items-start` } onPress={ () => navigation.navigate("Intro") }>
+                    <View style={ tw`py-2` }><Feather name="arrow-left" style={ tw`opacity-50 w-24px h-24px` } size={ 24 } color="black" /></View>
                 </TouchableOpacity>
                 <View style={ tw`flex pt-5` }>
                     <TitleText>
                         First, add your <TextBlue>car.</TextBlue>
                     </TitleText>
                 </View>
-                <View style={ tw` flex-4` }>
+                <View style={ tw`pt-3` }>
                     <MainText>
                         Your car information will be used by buyers to easily find you. You have already added your car, if this is correct please continue or add a new car.
                     </MainText>
                 </View>
 
-                <View style={ tw`w-full px-12` }>
+                <View style={ tw`w-full pt-5` }>
+                    <Text style={ { fontSize: 12, fontFamily: 'gilroy', paddingBottom: 5 } }>Your Car</Text>
                     <DropDownPicker
                         placeholder='Select your car'
                         showTickIcon={ true }
@@ -74,7 +75,7 @@ export default function AddCar() {
                     <Image source={ city } style={ tw`w-full h-full` } resizeMode="contain" />
                 </View>
                 <View style={ tw`items-center justify-center w-full h-150px` }>
-                    <MainButton title={ "List your space!" } disabled={ !value } handlePress={ () => navigation.navigate("AddLocation") } />
+                    <MainButton title={ "Add Car" } disabled={ !value } handlePress={ () => navigation.navigate("AddLocation") } />
                 </View>
             </View >
         </SafeAreaView >

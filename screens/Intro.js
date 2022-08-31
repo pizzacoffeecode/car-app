@@ -33,21 +33,21 @@ export default function Intro() {
                 <TouchableOpacity style={ tw`flex items-end` } onPress={ () => navigation.navigate("AddCar") }>
                     <View style={ tw`px-8 py-2` }><MaterialIcons style={ tw`opacity-50 w-24px h-24px` } name="close" size={ 24 } color="black" /></View>
                 </TouchableOpacity>
-                <View style={ tw`flex pt-5` }>
+                <View style={ tw`flex px-8 pt-5` }>
                     <TitleText>
                         List your <TextBlue>parking space!</TextBlue>
                     </TitleText>
                 </View>
-                <View style={ tw` flex-4` }>
+                <View style={ tw`px-8 flex-4` }>
                     <MainText>
-                        "We started a pilot program in NYC. On average, host makes <TextBold>$928 a month.</TextBold> If you live in NYC, become a host and help others find parking easily!"
+                        We started a pilot program in NYC. On average, host makes <TextBold>$928 a month.</TextBold> If you live in NYC, become a host and help others find parking easily!
                     </MainText>
                 </View>
 
                 <View style={ tw`items-center justify-center pt-2bg-gray-300 flex-12` }>
                     <Image source={ car } style={ tw`w-full h-full` } resizeMode="contain" />
                 </View>
-                <View style={ tw`items-center justify-center w-full h-150px` }>
+                <View style={ tw`items-center justify-center w-full px-8 h-150px` }>
                     <MainButton title={ "List your space!" } handlePress={ () => navigation.navigate("AddCar") } />
                 </View>
             </View >

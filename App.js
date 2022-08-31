@@ -22,7 +22,7 @@ import { Provider } from 'react-redux';
 import { store } from './app/store';
 
 //? Screens
-import { Intro, AddCar, AddLocation } from './screens/index';
+import { Intro, AddCar, AddLocation, Duration } from './screens/index';
 
 //? Components
 
@@ -49,7 +49,7 @@ export default function App() {
     <NavigationContainer>
       <SafeAreaProvider style={ tw`bg-[${ theme.colors[ 'bg-white' ] }]` }>
         <Stack.Navigator>
-          <Stack.Screen
+          {/* <Stack.Screen
             name="Intro"
             component={ Intro }
             options={ {
@@ -66,6 +66,13 @@ export default function App() {
           <Stack.Screen
             name="AddLocation"
             component={ AddLocation }
+            options={ {
+              headerShown: false,
+            } }
+          /> */}
+          <Stack.Screen
+            name="Duration"
+            component={ Duration }
             options={ {
               headerShown: false,
             } }

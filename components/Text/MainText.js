@@ -1,14 +1,12 @@
 import { View, Text } from 'react-native';
-import React from 'react';
 import { StyleSheet } from 'react-native';
 
 import tw from 'twrnc';
-import { theme } from '../../tailwind-config';
 
 export default function MainText({ children }) {
     return (
         <View style={ tw`w-full` }>
-            <View style={ tw`items-center justify-center px-10 pt-5 text-center` }>
+            <View style={ tw`items-start justify-center pt-5 text-justify` }>
                 <Text style={ styles.mainText }>
                     { children }
                 </Text>
@@ -23,6 +21,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         textAlign: 'center',
         fontFamily: 'gilroyBold',
+        fontSize: 16,
         textAlign: 'justify'
     }
 });
