@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
         text: 'black',
         justifyContent: 'center',
         textAlign: 'center',
-        fontFamily: 'gilroyBold',
+        fontFamily: 'gilroy',
         fontSize: 16,
         textAlign: 'justify'
     }

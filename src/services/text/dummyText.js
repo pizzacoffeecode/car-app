@@ -10,4 +10,8 @@ const text = [ {
         header: "First, add your car.",
         main: "Your car information will be used by buyers to easily find you. You have already added your car, if this is correct please continue or add a new car."
     },
+    parking: {
+        header: "First, add your car.",
+        main: "Your car information will be used by buyers to easily find you. You have already added your car, if this is correct please continue or add a new car."
+    },
 } ];

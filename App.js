@@ -1,34 +1,18 @@
-import { StatusBar } from 'expo-status-bar';
-import { Text, View } from 'react-native';
-import { SafeAreaView } from '@react-navigation/native';
-
-import { useState } from 'react';
 
 //?Expo
-
 import { useFonts } from 'expo-font';
-
 
 //? Navigation
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-
 import { NavigationContainer } from '@react-navigation/native';
-
-//?Hooks
 
 //? Redux
 import { Provider } from 'react-redux';
-import { store } from './app/store';
+import { store } from './src/app/store';
 
 //? Screens
-import { Intro, AddCar, AddLocation, Duration } from './screens/index';
-
-//? Components
-
-//? Tailwind
-import tw from 'twrnc';
-import { theme } from './tailwind-config';
+import { Intro, AddCar, AddLocation, Duration, Pending, Confirm, Price } from './src/screens/index';
 
 const Stack = createNativeStackNavigator();
 
@@ -46,10 +30,11 @@ export default function App() {
   }
 
   return (
-    <NavigationContainer>
-      <SafeAreaProvider style={ tw`bg-[${ theme.colors[ 'bg-white' ] }]` }>
+    <Provider store={ store }>
+      <NavigationContainer>
+        {/* <SafeAreaProvider style={ tw`bg-[${ theme.colors[ 'bg-white' ] }]` }> */ }
         <Stack.Navigator>
-          {/* <Stack.Screen
+          <Stack.Screen
             name="Intro"
             component={ Intro }
             options={ {
@@ -69,7 +54,7 @@ export default function App() {
             options={ {
               headerShown: false,
             } }
-          /> */}
+          />
           <Stack.Screen
             name="Duration"
             component={ Duration }
@@ -77,9 +62,31 @@ export default function App() {
               headerShown: false,
             } }
           />
+          <Stack.Screen
+            name="Price"
+            component={ Price }
+            options={ {
+              headerShown: false,
+            } }
+          />
+          <Stack.Screen
+            name="Confirm"
+            component={ Confirm }
+            options={ {
+              headerShown: false,
+            } }
+          />
+          <Stack.Screen
+            name="Pending"
+            component={ Pending }
+            options={ {
+              headerShown: false,
+            } }
+          />
         </Stack.Navigator>
-      </SafeAreaProvider>
-    </NavigationContainer>
+        {/* </SafeAreaProvider> */ }
+      </NavigationContainer>
+    </Provider >
   );
 }
 

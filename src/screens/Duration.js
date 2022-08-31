@@ -1,6 +1,5 @@
-import { View, Pressable, Text, TextInput, TouchableOpacity, StyleSheet, Dimensions } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, Dimensions } from 'react-native';
 import { useEffect, useRef } from 'react';
-import { SafeAreaView } from 'react-native-safe-area-context';
 
 //? Navigation
 import { useNavigation } from '@react-navigation/native';
@@ -9,36 +8,35 @@ import { useNavigation } from '@react-navigation/native';
 import MapView from 'react-native-maps';
 import Marker from 'react-native-maps';
 
+//? Redux
+import { useSelector } from 'react-redux';
+import { selectLocation } from '../app/navSlice';
+
+
 //? Components
-import { TextBlue, TextBold } from '../components/Text/textStyles/TextStyles';
-import TitleText from '../components/Text/TitleText';
-import MainText from '../components/Text/MainText';
-import MainButton from '../components/buttons/MainButton';
+import { MainButton } from '../components/index';
 
 //? Styles
 import tw from 'twrnc';
-import { theme } from '../tailwind-config';
+import { theme } from '../../tailwind-config';
 import { Feather } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
-import car from '../assets/images/car.png';
+
 
 
 export default function Duration() {
     const navigation = useNavigation();
+    const selectLoc = useSelector(selectLocation);
 
-    useEffect(() => {
-        navigation.setOptions({
-            headerShown: false,
-        });
-    }, []);
     const mapRef = useRef(null);
 
     const initialRegion = {
-        latitude: 40.2011,
-        longitude: -74.8606,
+        latitude: selectLoc.location.lat,
+        longitude: selectLoc.location.lng,
         latitudeDelta: 0.005,
         longitudeDelta: 0.005,
     };
+    console.log(selectLoc.description);
 
     return (
         <View style={ tw`w-full h-full` }>
@@ -52,32 +50,36 @@ export default function Duration() {
                 <MapView ref={ mapRef } style={ styles.map }
                     initialRegion={ initialRegion }
                 >
-                    {/* { stateMarkers && stateMarkers.map((dataObj, index) => (
-
-                            <MapView.Marker
-                                key={ index }
-                                coordinate={ { latitude: dataObj.markers.coords.latitude, longitude: dataObj.markers.coords.longitude } }
-                                title={ dataObj.tagId[ 0 ].id }
-                                description={ dataObj.readOnly[ 0 ].canMakeReadOnly === true ? "true" : "false" }
-                                initialRegion={ initialRegion }
-                            />
-                        )) } */}
+                    <MapView.Marker
+                        key={ 1 }
+                        image={ require('../../assets/images/icons/parking-loc-large.png') }
+                        coordinate={ { latitude: selectLoc.location.lat, longitude: selectLoc.location.lng } }
+                        title={ "614 Clinton Street, Hoboken, NJ" }
+                        description={ "" }
+                        initialRegion={ {
+                            latitude: selectLoc.location.lat,
+                            longitude: selectLoc.location.lng,
+                            latitudeDelta: 0.005,
+                            longitudeDelta: 0.005,
+                        } }
+                    />
                 </MapView>
             </View>
 
-
-            {/* <View style={ tw`` }> */ }
             <View style={ tw`justify-center bg-white h-55 rounded-tr-3xl rounded-tl-3xl` }>
                 <View style={ tw`px-8` }>
-                    <View style={ tw`w-full mb-3 items-center` }>
+                    <View style={ tw`items-center w-full mb-3` }>
                         <Text style={ (tw`text-base `, { fontFamily: "gilroyBold" }) }>Confirm Location</Text>
                     </View>
                     <View style={ tw`flex-row my-2 rounded-md border border-[${ theme.colors[ 'border-gray' ] }]` }>
                         <MaterialIcons style={ tw`p-2 opacity-40` } name="location-on" size={ 24 } color="black" />
-                        <TextInput style={ tw`w-full px-2 color-gray-300` } placeholder="Enter you location..." />
+                        <TextInput style={ tw`w-full px-2` }
+                            placeholder="Enter a location..."
+                            value={ selectLoc.description }
+                        />
                     </View>
                     <View style={ tw`items-center justify-center w-full pt-4` }>
-                        <MainButton title={ "Confirm" } handlePress={ () => navigation.navigate("AddCar") } />
+                        <MainButton title={ "Confirm" } handlePress={ () => navigation.navigate("Price") } />
                     </View>
                 </View>
             </View>
